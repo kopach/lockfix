@@ -1,0 +1,64 @@
+{
+  "name": "lockfix",
+  "description": "Smart fix integrity changes of npm lock file",
+  "license": "MIT",
+  "author": "Ihor Kopach (https://kopach.dev)",
+  "homepage": "https://github.com/kopach/lockfix",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kopach/lockfix"
+  },
+  "bugs": {
+    "url": "https://github.com/kopach/lockfix/issues"
+  },
+  "version": "1.0.0",
+  "main": "lockfix.js",
+  "bin": "dist/cli.js",
+  "files": [
+    "dist/*"
+  ],
+  "scripts": {
+    "adr:update": "adr update",
+    "prebuild": "rimraf dist",
+    "build": "tsc",
+    "build:watch": "npm run build -- --watch",
+    "lint": "tslint --project tsconfig.json src/**/*.ts",
+    "lint-package.json": "prettier-package-json --write",
+    "lint:fix": "npm run lint -- --fix",
+    "prepublishOnly": "npm run build",
+    "release": "np --no-2fa"
+  },
+  "dependencies": {
+    "chalk": "4.0.0",
+    "commander": "5.1.0",
+    "execa": "4.0.2",
+    "shortid": "2.2.15"
+  },
+  "devDependencies": {
+    "@types/node": "14.0.10",
+    "@types/shortid": "0.0.29",
+    "adr": "1.1.4",
+    "np": "https://github.com/pixelastic/np/tarball/c3ab2e3b053c7da0ce40a572ca1616273ac080f8",
+    "prettier": "2.0.5",
+    "prettier-package-json": "2.1.3",
+    "rimraf": "3.0.2",
+    "ts-node": "8.10.2",
+    "tslint": "6.1.2",
+    "tslint-clean-code": "0.2.10",
+    "tslint-config-airbnb": "5.11.2",
+    "tslint-config-prettier": "1.18.0",
+    "tslint-config-standard": "9.0.0",
+    "tslint-no-circular-imports": "0.7.0",
+    "tslint-plugin-prettier": "2.3.0",
+    "typescript": "4.0.0-dev.20200604"
+  },
+  "keywords": [
+    "integrity",
+    "lock",
+    "lockfile",
+    "npm",
+    "npm-shrinkwrap.json",
+    "package-lock.json",
+    "shrinkwrap"
+  ]
+}

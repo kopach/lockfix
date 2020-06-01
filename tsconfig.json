@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "outDir": "./dist",
+        "target": "es5",
+        "lib": [
+            "es5"
+        ],
+        "typeRoots": [
+            "node_modules/@types"
+        ],
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "noImplicitAny": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "sourceMap": true,
+        "strict": true,
+        "strictNullChecks": true
+    },
+    "exclude": [
+        "src/**/*.spec.ts"
+    ],
+    "include": [
+        "src"
+    ],
+    "compileOnSave": false
+}
