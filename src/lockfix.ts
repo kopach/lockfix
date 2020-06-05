@@ -1,15 +1,20 @@
 import * as execa from 'execa';
 import { writeFileSync } from 'fs';
 import { EOL } from 'os';
-import { red, black } from 'chalk';
+import { underline } from 'chalk';
 import { generate } from 'shortid';
+import { log } from './logger';
 
 export default async function lockfix(): Promise<void> {
+  log('🎬 Starting...');
+
   if (!(await isAnythingToCommit())) {
-    console.log('LockFix: nothing to do, exiting...');
+    log('🤔 nothing to do for me, exiting...');
 
     return;
   }
+
+  log('🔁 Applying changes');
 
   await execa('git', ['add', '.']);
   await execa('git', ['commit', '-m', '--lockfix--']);
@@ -33,6 +38,8 @@ export default async function lockfix(): Promise<void> {
 
   await execa('git', ['apply', patchName]);
   await execa('rm', [patchName]);
+
+  log('✅ Done');
 }
 
 async function isAnythingToCommit(): Promise<boolean> {
@@ -48,13 +55,10 @@ async function isAnythingToCommit(): Promise<boolean> {
 async function printRevertInstructions(): Promise<void> {
   const commitHash: string = (await execa('git', ['rev-parse', 'HEAD'])).stdout;
 
-  console.log(prepareRevertInstruction(commitHash));
+  log(`🔙 ${prepareRevertInstruction(commitHash)}`);
 }
 
 function prepareRevertInstruction(commitHash: string): string {
-  return `
-${red('LockFix revert instruction')}
-Use command below to revert changes done by LockFix
-${black.bgBlackBright(`git reset --hard ${commitHash} && git reset HEAD~1`)}
-  `;
+  return `In case of neeed – use command below to revert changes done by LockFix
+${underline.bold(`git reset --hard ${commitHash} && git reset HEAD~1`)}`;
 }
