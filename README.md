@@ -20,7 +20,7 @@
 
 ⭐️ Please, star me on GitHub — it helps!
 
-[lockfix](https://github.com/kopach/lockfix) – is a CLI tool, which helps to revert `sha1` integrity changes of npm lock file
+[lockfix](https://github.com/kopach/lockfix) – is a [git](https://git-scm.com/) based CLI tool, which helps to revert `sha1` integrity changes of npm lock file
 
 <h1 align="center">
 
