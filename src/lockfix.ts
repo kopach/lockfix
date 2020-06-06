@@ -8,8 +8,8 @@ import { log } from './logger';
 export default async function lockfix(): Promise<void> {
   log('🎬 Starting...');
 
-  if (!(await isAnythingToCommit())) {
-    log('🤔 nothing to do for me, exiting...');
+  if (!(await isAnyUncommitedChnage())) {
+    log('🤔 Nothing to do for me, exiting...');
 
     return;
   }
@@ -42,14 +42,21 @@ export default async function lockfix(): Promise<void> {
   log('✅ Done');
 }
 
-async function isAnythingToCommit(): Promise<boolean> {
+async function isAnyUncommitedChnage(): Promise<boolean> {
   const result: string = (await execa('git', ['status', '--porcelain'])).stdout;
 
-  if (!result) {
+  if (!result || !isChnagendLockFile(result)) {
     return Promise.resolve(false);
   }
 
   return Promise.resolve(true);
+}
+
+function isChnagendLockFile(str: string): boolean {
+  return (
+    str.indexOf('package-lock.json') !== -1 ||
+    str.indexOf('npm-shrinkwrap.json') !== -1
+  );
 }
 
 async function printRevertInstructions(): Promise<void> {
