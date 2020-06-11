@@ -8,6 +8,12 @@ import { log } from './logger';
 export default async function lockfix(): Promise<void> {
   log('🎬 Starting...');
 
+  if (!(await isGitRoot())) {
+    log('🤔 Not a Git root directory, exiting...');
+
+    return;
+  }
+
   if (!(await isAnyUncommitedChnage())) {
     log('🤔 Nothing to do for me, exiting...');
 
@@ -40,6 +46,15 @@ export default async function lockfix(): Promise<void> {
   await execa('rm', [patchName]);
 
   log('✅ Done');
+}
+
+async function isGitRoot(): Promise<boolean> {
+  const gitTopLevelDir: string = (
+    await execa('git', ['rev-parse', '--show-toplevel'])
+  ).stdout;
+  const workingDirectory = process.cwd();
+
+  return gitTopLevelDir === workingDirectory;
 }
 
 async function isAnyUncommitedChnage(): Promise<boolean> {
