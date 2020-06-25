@@ -23,7 +23,7 @@ export default async function lockfix(): Promise<void> {
   log('🔁 Applying changes');
 
   await execa('git', ['add', '.']);
-  await execa('git', ['commit', '-m', '--lockfix--']);
+  await execa('git', ['commit', '--no-verify', '-m', '--lockfix--']);
 
   await printRevertInstructions();
 
