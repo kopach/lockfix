@@ -30,7 +30,7 @@
     "postshrinkwrap": "lockfix"
   },
   "dependencies": {
-    "chalk": "4.0.0",
+    "chalk": "4.1.0",
     "commander": "5.1.0",
     "execa": "4.0.2",
     "shortid": "2.2.15"
