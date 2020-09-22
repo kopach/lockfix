@@ -42,12 +42,19 @@ After
 
 ## ❓ Why? [🔝](#-table-of-contents)
 
-[NPM](https://npmjs.org/) has known issue of constantly changing `integity` property of its lock file. Integrity may change due to various reasons. Few of them are: `npm install` done on different machine, some package version updated, another version of `npm` was used. Intention of this tool is to prevent such changes and make `integrity` property secure and reliable.
+[NPM](https://npmjs.org/) has known issue of constantly changing `integity` property of its lock file. Integrity may change due to plenty of reasons. Some of them are:
+
+- `npm install` done on machine with different OS from one where lock file generated
+- some package version updated
+- another version of `npm` used
+
+Intention of this tool is to prevent such changes and make `integrity` property secure and reliable.
 
 ## ✨ Features [🔝](#-table-of-contents)
 
-- Reverts only changes from `sha512` to `sha1`. Keeps untouched changes from `sha1` to `sha512`. `sha512` algorithm is more secure.
+- Reverts changes from `sha512` to `sha1`. Keeps untouched changes from `sha1` to `sha512`. `sha512` algorithm is more secure.
 - Works well with both `package-lock.json` and `npm-shrinkwrap.json`
+- Possibility to revert any changes done by **this tool**
 
 ## 💾 Install [🔝](#-table-of-contents)
 
@@ -85,6 +92,18 @@ or (without install)
 npx lockfix
 ```
 
+#### Options
+
+```bash
+Usage: lockfix [options]
+
+Options:
+  -V, --version  output the version number
+  -c, --commit   make commit as a backup of current working directory state
+  -h, --help     display help for command
+```
+
+
 ## 📄 License [🔝](#-table-of-contents)
 
-This software is licensed under the [MIT](https://github.com/kopach/lockfix/blob/master/LICENSE)
+This software licensed under the [MIT](https://github.com/kopach/lockfix/blob/master/LICENSE)

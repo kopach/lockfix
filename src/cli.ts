@@ -8,5 +8,10 @@ const pjson = require('../package.json');
 program
   .name(pjson.name)
   .version(pjson.version)
-  .action(lockfix)
+  .option(
+    '-c, --commit',
+    'make commit as a backup of current working directory state'
+  )
   .parse(process.argv);
+
+lockfix(program.commit !== undefined);
