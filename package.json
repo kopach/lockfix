@@ -39,7 +39,7 @@
     "@types/node": "14.11.2",
     "@types/shortid": "0.0.29",
     "adr": "1.2.1",
-    "lockfix": "1.0.2",
+    "lockfix": "2.0.0",
     "np": "https://github.com/pixelastic/np/tarball/c3ab2e3b053c7da0ce40a572ca1616273ac080f8",
     "prettier": "2.1.2",
     "prettier-package-json": "2.1.3",
