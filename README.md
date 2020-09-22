@@ -54,6 +54,7 @@ Intention of this tool is to prevent such changes and make `integrity` property 
 
 - Reverts changes from `sha512` to `sha1`. Keeps untouched changes from `sha1` to `sha512`. `sha512` algorithm is more secure.
 - Works well with both `package-lock.json` and `npm-shrinkwrap.json`
+- Possibility to revert any changes done by **this tool**
 
 ## 💾 Install [🔝](#-table-of-contents)
 
@@ -90,6 +91,18 @@ or (without install)
 ```bash
 npx lockfix
 ```
+
+#### Options
+
+```bash
+Usage: lockfix [options]
+
+Options:
+  -V, --version  output the version number
+  -c, --commit   make commit as a backup of current working directory state
+  -h, --help     display help for command
+```
+
 
 ## 📄 License [🔝](#-table-of-contents)
 
