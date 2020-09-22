@@ -5,7 +5,8 @@ import { underline } from 'chalk';
 import { generate } from 'shortid';
 import { log } from './logger';
 
-export default async function lockfix(): Promise<void> {
+// tslint:disable-next-line: no-flag-args
+export default async function lockfix(doCommit: boolean): Promise<void> {
   log('🎬 Starting...');
 
   if (!(await isGitRoot())) {
@@ -22,13 +23,20 @@ export default async function lockfix(): Promise<void> {
 
   log('🔁 Applying changes');
 
-  await execa('git', ['add', '.']);
-  await execa('git', ['commit', '--no-verify', '-m', '--lockfix--']);
+  if (doCommit) {
+    await execa('git', ['add', '.']);
+    await execa('git', ['commit', '--no-verify', '-m', '--lockfix--']);
 
-  await printRevertInstructions();
+    await printRevertInstructions();
+  }
 
   const commitDiff: string = (
-    await execa('git', ['diff', '--binary', 'HEAD^', 'HEAD'])
+    await execa('git', [
+      'diff',
+      '--binary',
+      ...(doCommit ? ['HEAD^'] : []),
+      'HEAD',
+    ])
   ).stdout;
 
   const matchPattern: RegExp = new RegExp(
@@ -40,7 +48,7 @@ export default async function lockfix(): Promise<void> {
 
   const patchName = `lockFixPatch-${generate()}.diff`;
   writeFileSync(patchName, commitDiff1 + EOL);
-  await execa('git', ['reset', '--hard', 'HEAD^']);
+  await execa('git', ['reset', '--hard', ...(doCommit ? ['HEAD^'] : ['HEAD'])]);
 
   await execa('git', ['apply', patchName]);
   await execa('rm', [patchName]);
