@@ -36,7 +36,7 @@
     "shortid": "2.2.16"
   },
   "devDependencies": {
-    "@types/node": "14.14.5",
+    "@types/node": "14.14.6",
     "@types/shortid": "0.0.29",
     "adr": "1.2.1",
     "lockfix": "2.0.0",
