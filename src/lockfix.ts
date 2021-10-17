@@ -4,6 +4,7 @@ import { EOL } from 'os';
 import { underline } from 'chalk';
 import { generate } from 'shortid';
 import { log } from './logger';
+import { relative } from 'path';
 
 // tslint:disable-next-line: no-flag-args
 export default async function lockfix(doCommit: boolean): Promise<void> {
@@ -62,7 +63,7 @@ async function isGitRoot(): Promise<boolean> {
   ).stdout;
   const workingDirectory = process.cwd();
 
-  return gitTopLevelDir === workingDirectory;
+  return relative(gitTopLevelDir, workingDirectory) === '';
 }
 
 async function isAnyUncommitedChnage(): Promise<boolean> {
