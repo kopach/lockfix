@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/kopach/lockfix/issues"
   },
-  "version": "2.0.0",
+  "version": "2.0.1",
   "main": "lockfix.js",
   "bin": "dist/cli.js",
   "files": [
