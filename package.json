@@ -41,7 +41,7 @@
     "adr": "1.4.1",
     "lockfix": "2.0.1",
     "np": "https://github.com/pixelastic/np/tarball/c3ab2e3b053c7da0ce40a572ca1616273ac080f8",
-    "prettier": "2.6.2",
+    "prettier": "2.7.0",
     "prettier-package-json": "2.6.3",
     "rimraf": "3.0.2",
     "ts-node": "9.1.1",
