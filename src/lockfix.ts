@@ -1,4 +1,5 @@
 import * as execa from 'execa';
+import * as shell from 'shelljs';
 import { writeFileSync } from 'fs';
 import { EOL } from 'os';
 import { underline } from 'chalk';
@@ -52,7 +53,7 @@ export default async function lockfix(doCommit: boolean): Promise<void> {
   await execa('git', ['reset', '--hard', ...(doCommit ? ['HEAD^'] : ['HEAD'])]);
 
   await execa('git', ['apply', patchName]);
-  await execa('rm', [patchName]);
+  shell.rm([patchName]);
 
   log('✅ Done');
 }
