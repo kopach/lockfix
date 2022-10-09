@@ -44,7 +44,7 @@ After
 
 ## ❓ Why? [🔝](#-table-of-contents)
 
-[NPM](https://npmjs.org/) has known issue of constantly changing `integity` property of its lock file. Integrity may change due to plenty of reasons. Some of them are:
+[NPM](https://npmjs.org/) has known issue of constantly changing `integrity` property of its lock file. Integrity may change due to plenty of reasons. Some of them are:
 
 - `npm install` done on machine with different OS from one where lock file generated
 - some package version updated
