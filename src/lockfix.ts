@@ -10,33 +10,35 @@ import { relative } from 'path';
 interface LockfixProps {
   doCommit: boolean;
   force: boolean;
+  quiet: boolean;
 }
 
 export default async function lockfix({
   doCommit,
   force,
+  quiet,
 }: LockfixProps): Promise<void> {
-  log('🎬 Starting...');
+  log('🎬 Starting...', { quiet });
 
   if (!force && !(await isGitRoot())) {
-    log('🤔 Not a Git root directory, exiting...');
+    log('🤔 Not a Git root directory, exiting...', { quiet });
 
     return;
   }
 
   if (!(await isAnyUncommitedChnage())) {
-    log('🤔 Nothing to do for me, exiting...');
+    log('🤔 Nothing to do for me, exiting...', { quiet });
 
     return;
   }
 
-  log('🔁 Applying changes');
+  log('🔁 Applying changes', { quiet });
 
   if (doCommit) {
     await execa('git', ['add', '.']);
     await execa('git', ['commit', '--no-verify', '-m', '--lockfix--']);
 
-    await printRevertInstructions();
+    await printRevertInstructions(quiet);
   }
 
   const commitDiff: string = (
@@ -67,7 +69,7 @@ export default async function lockfix({
   ]);
   shell.rm([patchName]);
 
-  log('✅ Done');
+  log('✅ Done', { quiet });
 }
 
 async function isGitRoot(): Promise<boolean> {
@@ -96,13 +98,13 @@ function isChnagendLockFile(str: string): boolean {
   );
 }
 
-async function printRevertInstructions(): Promise<void> {
+async function printRevertInstructions(quiet: boolean): Promise<void> {
   const commitHash: string = (await execa('git', ['rev-parse', 'HEAD'])).stdout;
 
-  log(`🔙 ${prepareRevertInstruction(commitHash)}`);
+  log(`🔙 ${prepareRevertInstruction(commitHash)}`, { quiet });
 }
 
 function prepareRevertInstruction(commitHash: string): string {
-  return `In case of neeed – use command below to revert changes done by LockFix
+  return `In case of need – use command below to revert changes done by LockFix
 ${underline.bold(`git reset --hard ${commitHash} && git reset HEAD~1`)}`;
 }
