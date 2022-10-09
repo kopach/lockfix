@@ -1,5 +1,6 @@
 {
   "name": "lockfix",
+  "version": "2.1.0",
   "description": "Smart fix integrity changes of npm lock file",
   "license": "MIT",
   "author": "Ihor Kopach (https://kopach.dev)",
@@ -11,7 +12,6 @@
   "bugs": {
     "url": "https://github.com/kopach/lockfix/issues"
   },
-  "version": "2.1.0",
   "main": "lockfix.js",
   "bin": "dist/cli.js",
   "files": [
@@ -44,7 +44,7 @@
     "lockfix": "2.1.0",
     "np": "7.6.2",
     "prettier": "2.7.1",
-    "prettier-package-json": "2.6.4",
+    "prettier-package-json": "2.7.0",
     "rimraf": "3.0.2",
     "ts-node": "10.9.1",
     "tslint": "6.1.3",
