@@ -1,5 +1,6 @@
 {
   "name": "lockfix",
+  "version": "2.1.0",
   "description": "Smart fix integrity changes of npm lock file",
   "license": "MIT",
   "author": "Ihor Kopach (https://kopach.dev)",
@@ -11,7 +12,6 @@
   "bugs": {
     "url": "https://github.com/kopach/lockfix/issues"
   },
-  "version": "2.1.0",
   "main": "lockfix.js",
   "bin": "dist/cli.js",
   "files": [
