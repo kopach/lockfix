@@ -10,8 +10,14 @@ program
   .version(pjson.version)
   .option(
     '-c, --commit',
-    'make commit as a backup of current working directory state'
+    'make backup commit with revert instruction before applying changes'
   )
+  .option('-f, --force', 'bypass Git root directory check')
+  .option('-q, --quiet', 'suppress output')
   .parse(process.argv);
 
-lockfix(program.commit !== undefined);
+lockfix({
+  doCommit: program.commit !== undefined,
+  force: program.force !== undefined,
+  quiet: program.quiet !== undefined,
+});
