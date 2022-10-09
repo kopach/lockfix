@@ -30,7 +30,7 @@
     "postshrinkwrap": "lockfix"
   },
   "dependencies": {
-    "chalk": "4.1.2",
+    "chalk": "5.1.0",
     "commander": "6.2.1",
     "execa": "4.1.0",
     "shelljs": "0.8.5",
