@@ -12,6 +12,10 @@ program
     '-c, --commit',
     'make commit as a backup of current working directory state'
   )
+  .option('-f, --force', 'bypass Git root directory check')
   .parse(process.argv);
 
-lockfix(program.commit !== undefined);
+lockfix({
+  doCommit: program.commit !== undefined,
+  force: program.force !== undefined,
+});

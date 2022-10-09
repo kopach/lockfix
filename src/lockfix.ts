@@ -7,11 +7,18 @@ import { generate } from 'shortid';
 import { log } from './logger';
 import { relative } from 'path';
 
-// tslint:disable-next-line: no-flag-args
-export default async function lockfix(doCommit: boolean): Promise<void> {
+interface LockfixProps {
+  doCommit: boolean;
+  force: boolean;
+}
+
+export default async function lockfix({
+  doCommit,
+  force,
+}: LockfixProps): Promise<void> {
   log('🎬 Starting...');
 
-  if (!(await isGitRoot())) {
+  if (!force && !(await isGitRoot())) {
     log('🤔 Not a Git root directory, exiting...');
 
     return;

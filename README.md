@@ -102,9 +102,9 @@ Usage: lockfix [options]
 Options:
   -V, --version  output the version number
   -c, --commit   make commit as a backup of current working directory state
+  -f, --force    bypass Git root directory check
   -h, --help     display help for command
 ```
-
 
 ## 📄 License [🔝](#-table-of-contents)
 
