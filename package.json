@@ -42,7 +42,7 @@
     "@types/shortid": "0.0.29",
     "adr": "1.4.3",
     "lockfix": "2.2.1",
-    "np": "7.6.2",
+    "np": "7.6.3",
     "prettier": "2.8.1",
     "prettier-package-json": "2.8.0",
     "rimraf": "3.0.2",
