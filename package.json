@@ -37,7 +37,7 @@
     "shortid": "2.2.16"
   },
   "devDependencies": {
-    "@types/node": "14.18.50",
+    "@types/node": "14.18.51",
     "@types/shelljs": "0.8.12",
     "@types/shortid": "0.0.29",
     "adr": "1.4.5",
