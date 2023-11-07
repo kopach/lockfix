@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "@types/node": "14.18.54",
-    "@types/shelljs": "0.8.12",
+    "@types/shelljs": "0.8.15",
     "@types/shortid": "0.0.29",
     "adr": "1.4.5",
     "lockfix": "2.2.1",
